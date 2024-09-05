@@ -33,6 +33,7 @@ int main()
                 printf("Entrez le quantite de livre : ");
                 scanf("%d",&quantite);
             //kanfar9o les infos dial livre entre�e par user eala ga3 tableau dans le meme index
+            //makn9duch ndiru affectation string to string, kn7oto la valeur dial title f T[livre-count]
                 strcpy(titles[livre_count], title);
                 strcpy(auteurs[livre_count], auteur);
                 prix[livre_count]= prix_a;
@@ -96,15 +97,22 @@ int main()
                     scanf("%s",title);
                    for (i=0; i<livre_count;i++){
                         if(strcmp(title,titles[i])==0){
-                        livre_count--;
-                            for(j=i; j<livre_count-1;j++){
+                            livre_count--;
+                            //j=i commençant par l'index de livre trouvé
+                            for(j=i; j<livre_count;j++){
+                                    /* remplacement des infos de livre supprimer par le précedent j+1 */
                                 strcpy(titles[j], titles[j+1]);
                                 strcpy(auteurs[j], auteurs[j+1]);
                                 prix[j]= prix[j+1];
                                 quantites[j]= quantites[j+1];
-                                deleted =1;
                             }
+                            deleted =1;
+                            break;
                         }
+                    }
+                    if(!deleted){
+                        printf("no livre avec ce titre\n");
+                    }else{
                         printf("Le livre est suprimer correctement \n");
                     }
 
